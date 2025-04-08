@@ -1,6 +1,6 @@
 <?php
 
-namespace Alex\Framework;
+namespace AlexWinter\Framework;
 
 final class App 
 {
@@ -8,5 +8,9 @@ final class App
     {
         return new App();
     }
-}
 
+    public function run(): void
+    {
+        echo "running";
+    }
+}

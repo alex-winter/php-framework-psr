@@ -1,9 +1,9 @@
 {
-    "name": "alex/framework",
+    "name": "alex-winter/framework",
     "description": "Alex Framework",
     "autoload": {
         "psr-4": {
-            "Alex\\Framework\\": "src/"
+            "AlexWinter\\Framework\\": "src/"
         }
     },
     "authors": [
