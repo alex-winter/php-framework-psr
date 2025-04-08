@@ -1,0 +1,15 @@
+{
+    "name": "alex/framework",
+    "description": "Alex Framework",
+    "autoload": {
+        "psr-4": {
+            "Alex\\Framework\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Alex Witner"
+        }
+    ],
+    "require": {}
+}
