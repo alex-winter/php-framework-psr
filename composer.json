@@ -3,7 +3,8 @@
     "description": "Alex Framework",
     "autoload": {
         "psr-4": {
-            "AlexWinter\\Framework\\": "src/"
+            "AlexWinter\\Framework\\": "src/",
+            "PublicTests\\": "public/"
         }
     },
     "authors": [
@@ -11,5 +12,12 @@
             "name": "Alex Witner"
         }
     ],
-    "require": {}
+    "require": {
+        "psr/http-message": "^2.0",
+        "psr/http-server-handler": "^1.0",
+        "psr/cache": "^3.0",
+        "psr/container": "^2.0",
+        "psr/event-dispatcher": "^1.0",
+        "psr/log": "^3.0"
+    }
 }
