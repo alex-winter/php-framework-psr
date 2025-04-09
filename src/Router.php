@@ -26,6 +26,16 @@ final class Router
         $this->add('GET', $path, $handler);
     }
 
+    public function post(string $path, string $handler): void
+    {
+        $this->add('POST', $path, $handler);
+    }
+
+    public function delete(string $path, string $handler): void
+    {
+        $this->add('DELETE', $path, $handler);
+    }
+
     public function dispatch(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface 
     {
         $method = $request->getMethod();
