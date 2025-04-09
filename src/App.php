@@ -31,8 +31,14 @@ final class App
         throw new \BadMethodCallException('method does not exist');
     }
 
-    public function run(ServerRequestInterface $request, ResponseInterface $response): void
+    public function run(
+        ServerRequestInterface | null $request = null, 
+        ResponseInterface | null $response = null,
+    ): void
     {      
+        $request ??= ServerRequest::fromGlobals();
+        $response ??= new Response();
+
         $response = $this->router->dispatch($request, $response);
      
         // emit response
