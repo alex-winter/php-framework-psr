@@ -11,7 +11,7 @@ use Pimple\Psr11\Container as PsrContainer;
 final class Container extends PsrContainer
 {
     function __construct(
-        private readonly PimpleContainer $pimple,
+        private readonly \ArrayAccess $arrayAccessContainer = new PimpleContainer(),
     ) {
     }
 
