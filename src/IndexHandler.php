@@ -1,6 +1,6 @@
 <?php
 
-namespace PublicTests;
+namespace App;
 
 use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;

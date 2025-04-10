@@ -3,8 +3,7 @@
     "description": "Alex Framework",
     "autoload": {
         "psr-4": {
-            "AlexWinter\\Framework\\": "src/",
-            "PublicTests\\": "public/"
+            "App\\": "src/"
         }
     },
     "authors": [
@@ -20,6 +19,8 @@
         "psr/event-dispatcher": "^1.0",
         "psr/log": "^3.0",
         "laminas/laminas-diactoros": "^3.5",
-        "psr/http-server-middleware": "^1.0"
+        "psr/http-server-middleware": "^1.0",
+        "slim/slim": "^4.14",
+        "pimple/pimple": "^3.5"
     }
 }
