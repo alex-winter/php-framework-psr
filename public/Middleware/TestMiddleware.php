@@ -11,8 +11,6 @@ class TestMiddleware implements MiddlewareInterface
 {
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        echo "lll";
-
         return $handler->handle($request);
     }
 }
