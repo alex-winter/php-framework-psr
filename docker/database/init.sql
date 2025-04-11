@@ -1,0 +1,1 @@
+ALTER USER 'appuser'@'%' IDENTIFIED WITH mysql_native_password BY 'apppassword';
