@@ -3,25 +3,35 @@
 namespace App;
 
 use Pimple\Container as PimpleContainer;
-use Pimple\Psr11\Container as PsrContainer;
+use Psr\Container\ContainerInterface;
 
 /**
  * @property IndexHandler $requestHandlerIndex
  */
-final class Container extends PsrContainer
+final class Container implements ContainerInterface
 {
     function __construct(
         private readonly \ArrayAccess $arrayAccessContainer = new PimpleContainer(),
     ) {
     }
 
-    public function __get(string $key): mixed
+    public function get(string $id): mixed
     {
-        return $this->pimple[$key];
+        return $this->arrayAccessContainer[$id];
     }
 
-    public function __set(string $key, mixed $value): void 
+    public function has(string $id): bool
     {
-        $this->pimple[$key] = $value;
+        return isset($this->arrayAccessContainer[$id]);
+    }
+
+    public function __get(string $id): mixed 
+    {
+        return $this->get($id);
+    }
+
+    public function __set(string $id, mixed $value): void 
+    {
+        $this->arrayAccessContainer[$id] = $value;
     }
 }
