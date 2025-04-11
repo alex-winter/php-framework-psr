@@ -21,6 +21,9 @@
         "laminas/laminas-diactoros": "^3.5",
         "psr/http-server-middleware": "^1.0",
         "slim/slim": "^4.14",
-        "pimple/pimple": "^3.5"
+        "pimple/pimple": "^3.5",
+        "doctrine/orm": "^3.3",
+        "doctrine/migrations": "^3.9",
+        "symfony/cache": "^7.2"
     }
 }
