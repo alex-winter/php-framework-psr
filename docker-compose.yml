@@ -23,5 +23,11 @@ services:
       - db-data:/var/lib/mysql
       - ./docker/database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
 
+  dependencies:
+    image: dadarek/wait-for-dependencies
+    depends_on:
+      - database
+    command: database:3306
+
 volumes:
   db-data:
