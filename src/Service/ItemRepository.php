@@ -21,4 +21,9 @@ final class ItemRepository
         $this->entityManager->persist($item);
         $this->entityManager->flush();
     }
+
+    public function getAll(): array
+    {
+        return $this->entityManager->getRepository(Item::class)->findAll();
+    }
 }

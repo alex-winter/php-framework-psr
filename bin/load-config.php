@@ -1,6 +1,7 @@
 <?php
 
-use App\CreateItemHandler;
+use App\RequestHandler\CreateItemHandler;
+use App\RequestHandler\GetAllItemsHandler;
 use App\RequestHandler\IndexRequestHandler;
 use App\Service\ItemRepository;
 use Doctrine\DBAL\DriverManager;
@@ -30,6 +31,7 @@ return [
     'request-handlers' => [
         IndexRequestHandler::class,
         CreateItemHandler::class,
+        GetAllItemsHandler::class,
     ],
 
 ];
