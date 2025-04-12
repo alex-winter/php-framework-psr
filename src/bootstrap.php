@@ -14,6 +14,12 @@ $route = new Route($app);
 
 $loadConfig = require_once __DIR__ . '/../bin/load-config.php';
 
+foreach ($loadConfig['dependencies'] as $key => $dep) {
+    $container->set($key, $dep);
+}
+foreach ($loadConfig['services'] as $serviceClass) {
+    $container->addClass($serviceClass);
+}
 foreach ($loadConfig['request-handlers'] as $requestHandlerClass) {
     $container->addRequestHanlder($requestHandlerClass);
 }
