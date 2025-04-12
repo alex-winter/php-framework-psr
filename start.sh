@@ -5,3 +5,5 @@ docker-compose up -d
 docker-compose run --rm dependencies
 
 docker-compose exec app ./vendor/bin/doctrine-migrations migrate --no-interaction
+
+docker-compose exec app php seed/seed.php

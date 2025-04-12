@@ -6,6 +6,7 @@ use App\RequestHandler\IndexRequestHandler;
 use App\Service\ItemRepository;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Mapping\UnderscoreNamingStrategy;
 use Doctrine\ORM\ORMSetup;
 
 return [
@@ -18,6 +19,9 @@ return [
             $isDevMode = true;
 
             $ORMConfig = ORMSetup::createAttributeMetadataConfiguration($paths, $isDevMode);
+
+            $ORMConfig->setNamingStrategy(new UnderscoreNamingStrategy());
+
             $connection = DriverManager::getConnection($config['database']);
 
             return new EntityManager($connection, $ORMConfig);
