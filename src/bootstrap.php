@@ -3,14 +3,21 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\Container;
-use App\Functions\Load;
+use App\Route;
 use Slim\Factory\AppFactory;
 
 $app = AppFactory::create(
-    container: new Container()
+    container: $container = new Container()
 );
 
-Load::files(__DIR__ . '/../bin/request-handlers', $app);
-Load::files(__DIR__ . '/../bin/routes', $app);
+$route = new Route($app);
+
+$loadConfig = require_once __DIR__ . '/../bin/load-config.php';
+
+foreach ($loadConfig['request-handlers'] as $requestHandlerClass) {
+    $container->addRequestHanlder($requestHandlerClass);
+}
+
+require_once __DIR__ . '/../bin/routes.php';
 
 $app->run();
