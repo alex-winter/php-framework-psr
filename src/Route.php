@@ -13,11 +13,20 @@ final class Route
 
     public function get(string $path, string $class): void 
     {
-        $this->app->get($path, $this->app->getContainer()->get($class));
+        $this->map('GET', $path, $class);
     }
 
     public function post(string $path, string $class): void 
     {
-        $this->app->post($path, $this->app->getContainer()->get($class));
+        $this->map('POST', $path, $class);
+    }
+
+    private function map(string $method, string $path, string $class): void
+    {
+        $this->app->map(
+            [$method], 
+            $path, 
+            $this->app->getContainer()->get($class),
+        );
     }
 }
