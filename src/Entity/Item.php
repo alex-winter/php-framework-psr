@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Trait\CreatedAt;
 use App\Entity\Trait\Id;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -14,9 +15,13 @@ class Item
     use Id;
     use CreatedAt;
 
-    public function __construct(string $name)
+    public function __construct(
+        string $name,
+        ?DateTimeImmutable $dueAt,
+    )
     {
         $this->name = $name;
+        $this->dueAt = $dueAt;
     }
 
     #[ORM\Column(type: 'string')]

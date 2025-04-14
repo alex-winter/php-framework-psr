@@ -1,5 +1,7 @@
 <?php
 
+use App\Middleware\Item\ParseRequestedData;
+use App\Provider\ItemProvider;
 use App\RequestHandler\CreateItemHandler;
 use App\RequestHandler\GetAllItemsHandler;
 use App\RequestHandler\IndexRequestHandler;
@@ -29,8 +31,16 @@ return [
         }
     ],
 
+    'providers' => [
+        ItemProvider::class,
+    ],
+
     'services' => [
         ItemRepository::class,
+    ],
+
+    'middleware' => [
+        ParseRequestedData::class,
     ],
 
     'request-handlers' => [

@@ -20,8 +20,16 @@ $loadConfig = require_once __DIR__ . '/../bin/load-config.php';
 foreach ($loadConfig['dependencies'] as $key => $dep) {
     $container->set($key, $dep);
 }
+
 foreach ($loadConfig['services'] as $serviceClass) {
     $container->addClass($serviceClass);
+}
+foreach ($loadConfig['providers'] as $providerClass) {
+    $container->addClass($providerClass);
+}
+
+foreach ($loadConfig['middleware'] as $middlewareClass) {
+    $container->addMiddleware($middlewareClass);
 }
 foreach ($loadConfig['request-handlers'] as $requestHandlerClass) {
     $container->addRequestHanlder($requestHandlerClass);

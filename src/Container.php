@@ -5,6 +5,8 @@ namespace App;
 use Pimple\Container as PimpleContainer;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 final class Container implements ContainerInterface
 {
@@ -39,9 +41,20 @@ final class Container implements ContainerInterface
     public function addRequestHanlder(string $class): void
     {
         $this->arrayAccessContainer[$class] = fn () => function (ServerRequestInterface $request) use ($class) {
+            /** @var RequestHandlerInterface $instance */
             $instance = new $class();
 
             return $instance->handle($request);
+        };
+    }
+
+    public function addMiddleware(string $class): void
+    {
+        $this->arrayAccessContainer[$class] = fn () => function (ServerRequestInterface $request, RequestHandlerInterface $handler) use ($class) {
+            /** @var MiddlewareInterface $instance */
+            $instance = new $class();
+
+            return $instance->process($request, $handler);
         };
     }
 
