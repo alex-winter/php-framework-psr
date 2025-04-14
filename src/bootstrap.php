@@ -10,6 +10,9 @@ $app = AppFactory::create(
     container: $container = new Container()
 );
 
+$app->addBodyParsingMiddleware();
+$app->addErrorMiddleware(true, true, true);
+
 $route = new Route($app);
 
 $loadConfig = require_once __DIR__ . '/../bin/load-config.php';

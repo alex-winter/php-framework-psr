@@ -25,16 +25,18 @@ final class GetAllItemsHandler implements RequestHandlerInterface
     {
         $items = $this->itemRepository->getAll();
 
-        return new JsonResponse(
-            data: ['items' => array_map(fn (Item $item) => [
-                
+        $data = [
+            'items' => array_map(fn (Item $item) => [
+                    
                 'name' => $item->name,
                 
                 'created_at' => $item->createdAt->format(DateTime::ATOM),
 
                 'due_at' => $item->dueAt?->format(DateTime::ATOM),
 
-            ], $items)]
-        );
+            ], $items),
+        ];
+
+        return new JsonResponse($data);
     }
 }

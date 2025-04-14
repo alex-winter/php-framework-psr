@@ -8,10 +8,16 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'items')]
+#[ORM\HasLifecycleCallbacks]
 class Item
 {
     use Id;
     use CreatedAt;
+
+    public function __construct(string $name)
+    {
+        $this->name = $name;
+    }
 
     #[ORM\Column(type: 'string')]
     public string $name {

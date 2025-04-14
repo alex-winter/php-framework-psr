@@ -14,8 +14,6 @@ trait CreatedAt
     #[ORM\PrePersist]
     public function setCreatedAtValue(): void
     {
-        if (!isset($this->createdAt)) {
-            $this->createdAt = new \DateTimeImmutable();
-        }
+        $this->createdAt = new \DateTimeImmutable();
     }
 }
