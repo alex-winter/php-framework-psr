@@ -2,7 +2,9 @@
 
 namespace App\RequestHandler;
 
+use App\Entity\Item;
 use App\Service\ItemRepository;
+use DateTime;
 use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -24,7 +26,15 @@ final class GetAllItemsHandler implements RequestHandlerInterface
         $items = $this->itemRepository->getAll();
 
         return new JsonResponse(
-            data: ['hello' => $items]
+            data: ['items' => array_map(fn (Item $item) => [
+                
+                'name' => $item->name,
+                
+                'created_at' => $item->createdAt->format(DateTime::ATOM),
+
+                'due_at' => $item->dueAt?->format(DateTime::ATOM),
+
+            ], $items)]
         );
     }
 }

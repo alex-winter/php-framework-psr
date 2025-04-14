@@ -16,6 +16,7 @@ return [
             $config = require_once __DIR__ . '/config.php';
             
             $paths = [__DIR__.'/../src/Entity'];
+            
             $isDevMode = true;
 
             $ORMConfig = ORMSetup::createAttributeMetadataConfiguration($paths, $isDevMode);

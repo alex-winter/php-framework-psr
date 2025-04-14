@@ -7,11 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 trait CreatedAt
 {
     #[ORM\Column(type: 'datetime_immutable')]
-    private \DateTimeImmutable $createdAt;
-
-    public function getCreatedAt(): \DateTimeImmutable
-    {
-        return $this->createdAt;
+    public \DateTimeImmutable $createdAt {
+        get => $this->createdAt;
     }
 
     #[ORM\PrePersist]
@@ -20,10 +17,5 @@ trait CreatedAt
         if (!isset($this->createdAt)) {
             $this->createdAt = new \DateTimeImmutable();
         }
-    }
-
-    public function getCreatedAtAsAtom(): string 
-    {
-        return $this->createdAt->format(\DateTime::ATOM);
     }
 }
