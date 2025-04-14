@@ -27,12 +27,12 @@ final class ParseRequestedData implements MiddlewareInterface
         $requestedName = (string)($requestedData['name'] ?? '');
         $requestedDueAt = (string)($requestedData['due_at'] ?? null);
 
-        $dtoItem = new Item(
-            trim($requestedName),
-            $requestedDueAt,
+        $this->itemProvider->set(
+            new Item(
+                trim($requestedName),
+                $requestedDueAt,
+            )
         );
-
-        $this->itemProvider->set($dtoItem);
 
         return $handler->handle($request);
     }

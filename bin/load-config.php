@@ -1,10 +1,12 @@
 <?php
 
 use App\Middleware\Item\ParseRequestedData;
+use App\Middleware\Item\ValidateRequestedData;
 use App\Provider\ItemProvider;
 use App\RequestHandler\CreateItemHandler;
 use App\RequestHandler\GetAllItemsHandler;
 use App\RequestHandler\IndexRequestHandler;
+use App\Service\ItemMapToResponse;
 use App\Service\ItemRepository;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManager;
@@ -37,10 +39,12 @@ return [
 
     'services' => [
         ItemRepository::class,
+        ItemMapToResponse::class,
     ],
 
     'middleware' => [
         ParseRequestedData::class,
+        ValidateRequestedData::class,
     ],
 
     'request-handlers' => [

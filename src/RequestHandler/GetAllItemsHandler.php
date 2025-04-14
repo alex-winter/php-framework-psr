@@ -3,8 +3,8 @@
 namespace App\RequestHandler;
 
 use App\Entity\Item;
+use App\Service\ItemMapToResponse;
 use App\Service\ItemRepository;
-use DateTime;
 use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -15,10 +15,12 @@ use function App\functions\get;
 final class GetAllItemsHandler implements RequestHandlerInterface
 {
     private readonly ItemRepository $itemRepository;
+    private readonly ItemMapToResponse $itemMapToResponse;
 
     public function __construct() 
     {   
         $this->itemRepository = get(ItemRepository::class);
+        $this->itemMapToResponse = get(ItemMapToResponse::class);
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface
@@ -26,15 +28,10 @@ final class GetAllItemsHandler implements RequestHandlerInterface
         $items = $this->itemRepository->getAll();
 
         $data = [
-            'items' => array_map(fn (Item $item) => [
-                    
-                'name' => $item->name,
-                
-                'created_at' => $item->createdAt->format(DateTime::ATOM),
-
-                'due_at' => $item->dueAt?->format(DateTime::ATOM),
-
-            ], $items),
+            'data' => array_map(
+                fn (Item $item) => $this->itemMapToResponse->map($item), 
+                $items,
+            ),
         ];
 
         return new JsonResponse($data);
